@@ -14,7 +14,7 @@ class Login extends Component {
     };
   }
 
-  handleChange({ target }) {
+  handleChange = ({ target }) => {
     const caracter = 3;
     this.setState(() => ({
       name: target.value,
@@ -22,7 +22,7 @@ class Login extends Component {
     }));
   }
 
-  buttonClick(event) {
+  buttonClick = (event) => {
     const { name } = this.state;
     event.preventDefault();
     this.setState({
@@ -51,7 +51,7 @@ class Login extends Component {
                   name="name"
                   id="name"
                   placeholder="Digite seu nome"
-                  onChange={ (event) => this.handleChange(event) }
+                  onChange={ this.handleChange }
                   value={ name }
                 />
               </label>
@@ -62,7 +62,7 @@ class Login extends Component {
                 name="button"
                 id="login-submit-button"
                 disabled={ btnDisabled }
-                onClick={ (event) => this.buttonClick(event) }
+                onClick={ this.buttonClick }
               >
                 Entrar
               </button>
