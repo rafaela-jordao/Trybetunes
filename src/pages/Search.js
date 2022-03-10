@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
@@ -17,6 +16,7 @@ class Search extends Component {
     };
   }
 
+  // requisito 5.
   // verifica se o input recebe dois ou mais caracteres e habilita o botão.
   handleChange = ({ target }) => {
     const caracter = 2;
@@ -26,6 +26,8 @@ class Search extends Component {
     }));
   }
 
+  // requisito 6.
+  // requisição para pesquisar artistas.
   btnSearch = () => {
     const { artistName } = this.state;
     this.setState({
@@ -51,7 +53,6 @@ class Search extends Component {
             ? (<Loading />)
             : (
               <>
-                <Header />
 
                 <form>
                   <input
