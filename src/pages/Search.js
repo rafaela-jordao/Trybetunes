@@ -49,8 +49,8 @@ class Search extends Component {
     return (
       <div data-testid="page-search">
         {
-          (loading === true)
-            ? (<Loading />)
+          loading
+            ? <Loading />
             : (
               <>
 
@@ -91,7 +91,10 @@ class Search extends Component {
                       <Link
                         data-testid={ `link-to-album-${album.collectionId}` }
                         to={ `/album/${album.collectionId}` }
-                      />
+                      >
+                        <p>Ouvir músicas</p>
+                      </Link>
+
                     </div>
                   ))}
                 </div>
