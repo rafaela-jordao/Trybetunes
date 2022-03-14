@@ -27,7 +27,6 @@ class Album extends Component {
 
   render() {
     const { resultApi, musicList, loading } = this.state;
-    console.log(resultApi);
     return (
       <div data-testid="page-album">
         <h2>Album</h2>
@@ -45,9 +44,11 @@ class Album extends Component {
                 <div className="music-list">
                   {musicList.map((music) => (
                     <MusicCard
-                      key={ music.trackName }
+                      key={ music.trackId }
                       trackName={ music.trackName }
                       previewUrl={ music.previewUrl }
+                      trackId={ music.trackId }
+                      music={ music }
                     />
                   ))}
                 </div>
