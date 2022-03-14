@@ -31,7 +31,7 @@ class MusicCard extends Component {
       loading: true,
       favorite: target.checked,
     }, async () => {
-      if (!target.checked === true) {
+      if (target.checked === true) {
         await addSong(song);
       }
       this.setState({
