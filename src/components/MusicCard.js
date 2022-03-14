@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -12,16 +12,27 @@ class MusicCard extends Component {
     };
   }
 
+  // Requisito 9 - recupera as músicas favoritas ao entrar na página do álbum.
+  // Requisito 10 - recupera as músicas favoritas e atualiza a lista após favoritar uma música.
+  async componentDidMount() {
+    const { trackId } = this.props;
+    const resultApi = await getFavoriteSongs();
+    const favoritesMusic = resultApi.some((song) => song.trackId === trackId);
+    this.setState({
+      favorite: favoritesMusic,
+    });
+  }
+
   // Requisito 8 - mecanismo para add músicas na lista de músicas favoritas.
   // Ajuda do Gabriel Pinheiro na monitoria (14/03/22) para finalizar e entender o erro (trackId undefined) apresentado no requisito.
   addFavoritesSongs = ({ target }) => {
-    const { music } = this.props;
+    const { song } = this.props;
     this.setState({
       loading: true,
       favorite: target.checked,
     }, async () => {
-      if (target.checked === true) {
-        await addSong(music);
+      if (!target.checked === true) {
+        await addSong(song);
       }
       this.setState({
         loading: false,
@@ -75,7 +86,7 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
-  music: PropTypes.arrayOf(PropTypes.object).isRequired,
+  song: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MusicCard;
